@@ -42,7 +42,7 @@ function disableFormElement(element: any) {
   var method: string, replacement;
 
   method = element.is('button') ? 'html' : 'val';
-  replacement = element.data(Attr.DISABLE_WITH);
+  replacement = element.data(DataKey.DISABLE_WITH);
 
   if (replacement !== undefined) {
     element.data(DataKey.ENABLE_WITH, element[method]());

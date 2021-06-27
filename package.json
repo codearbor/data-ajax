@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
+  "main": "dist/data-ajax.min.js",
   "devDependencies": {
     "@types/jquery": "^3.5.5",
     "terser-webpack-plugin": "^5.1.4",
