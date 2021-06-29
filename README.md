@@ -16,12 +16,12 @@ A library for unobtrusive ajax using `data-ajax*` attributes.
 
 ## Events Triggers
 Events triggered on the element attached with `[data-ajax]`:
-- `ajax-before`: Triggered before request is prepared. Can be **cancelled** by returning `false`. Event Handler Parameters ```(event, element)```
-- `ajax-before-send`: Triggered before request is sent. Can be **cancelled** by returning `false`. Event Handler Parameters ```(event, element, xhr, settings)```. Can be used to change `settings` and `xhr` config
-- `ajax-send`: Triggered when request is sent. Event Handler Parameters ```(event, element, xhr, settings)```
-- `ajax-success`: Triggered when request is successful. Event Handler Parameters ```(event, element, xhr, status, data)```
-- `ajax-error`: Triggered on request error. Event Handler Parameters ```(event, element, xhr, status, error)```
-- `ajax-complete`: Triggered when request is complete. This event may not trigger as the element may not exists after success response.. Event Handler Parameters ```(event, element, xhr, status)```
+- `ajax-before`: Triggered before request is prepared. Can be **cancelled** by returning `false`. Event Handler Parameters ```(event, element, clickedElement)```
+- `ajax-before-send`: Triggered before request is sent. Can be **cancelled** by returning `false`. Event Handler Parameters ```(event, element, xhr, settings, clickedElement)```. Can be used to change `settings` and `xhr` config
+- `ajax-send`: Triggered when request is sent. Event Handler Parameters ```(event, element, xhr, settings, clickedElement)```
+- `ajax-success`: Triggered when request is successful. Event Handler Parameters ```(event, element, xhr, status, data, clickedElement)```
+- `ajax-error`: Triggered on request error. Event Handler Parameters ```(event, element, xhr, status, error, clickedElement)```
+- `ajax-complete`: Triggered when request is complete. This event may not trigger as the element may not exists after success response. Event Handler Parameters ```(event, element, xhr, status, clickedElement)```
 
 Event triggered on the element `data-ajax-update`:
 - `ajax-update`: Triggered after successful update of the element. Event Handler Parameters ```(event, element, data)```

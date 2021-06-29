@@ -62,7 +62,7 @@ export function setupForms() {
       url: url,
       type: method,
       data: clickInfo.concat($form.serializeArray())
-    });
+    }, $target && $target[0]);
   });
 }
 

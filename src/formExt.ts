@@ -19,8 +19,8 @@ const formEnableSelector = [`input[${Attr.DISABLE_WITH}]:disabled`,
 export function setupFormExt() {
   const $doc = $(document);
 
-  $doc.on('ajax-send', formSubmitSelector, function (event) {
-    if (this === event.target) disableFormElements($(this));
+  $doc.on('ajax-send', formSubmitSelector, function (event, element, xhr, options, clickElement) {
+    if (this === event.target) disableFormElements($(this), clickElement);
   });
 
   $doc.on('ajax-success', formSubmitSelector, function (event) {
@@ -32,21 +32,22 @@ export function setupFormExt() {
   });
 }
 
-function disableFormElements(form: any) {
+function disableFormElements(form: any, actualElement: HTMLElement | undefined | null = null) {
   formElements(form, formDisableSelector).each(function () {
-    disableFormElement($(this));
+    disableFormElement($(this), actualElement);
   });
 }
 
-function disableFormElement(element: any) {
-  var method: string, replacement;
+function disableFormElement(element: any, actualElement: HTMLElement | undefined | null = null) {
 
-  method = element.is('button') ? 'html' : 'val';
-  replacement = element.data(DataKey.DISABLE_WITH);
+  if (actualElement == null || actualElement === element[0]) {
+    const method = element.is('button') ? 'html' : 'val';
+    const replacement = element.data(DataKey.DISABLE_WITH);
 
-  if (replacement !== undefined) {
-    element.data(DataKey.ENABLE_WITH, element[method]());
-    element[method](replacement);
+    if (replacement !== undefined) {
+      element.data(DataKey.ENABLE_WITH, element[method]());
+      element[method](replacement);
+    }
   }
 
   element.prop('disabled', true);
@@ -60,8 +61,8 @@ function enableFormElements(form: JQuery<any>) {
 }
 
 function enableFormElement(element: any) {
-  var method = element.is('button') ? 'html' : 'val';
   if (element.data(DataKey.ENABLE_WITH) !== undefined) {
+    const method = element.is('button') ? 'html' : 'val';
     element[method](element.data(DataKey.ENABLE_WITH));
     element.removeData(DataKey.ENABLE_WITH);
   }

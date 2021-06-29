@@ -5,14 +5,15 @@ import { processResponse } from './response';
 
 const HTTP_OVERRIDE = 'X-HTTP-Method-Override';
 
-export function sendRequest(element: HTMLElement, options: any): boolean | JQuery.jqXHR {
+export function sendRequest(element: HTMLElement, options: any, clickElement: HTMLElement | null = null): boolean | JQuery.jqXHR {
   const $element = $(element),
     confirm = $element.attr(Attr.CONFIRM),
     loading = $($element.attr(Attr.LOADING) || ''),
-    loadDuration = parseInt($element.attr(Attr.LOADING_DURATION) as any || 0, 10);
+    loadDuration = parseInt($element.attr(Attr.LOADING_DURATION) as any || 0, 10),
+    clickEle = clickElement ?? element;
   var method = $element.attr(Attr.METHOD) || undefined;
 
-  if (!fireEvent($element, EventOf.BEFORE, [element])) {
+  if (!fireEvent($element, EventOf.BEFORE, [element, clickEle])) {
     return false;
   }
 
@@ -27,25 +28,25 @@ export function sendRequest(element: HTMLElement, options: any): boolean | JQuer
     beforeSend: function (xhr: JQueryXHR, settings: any) {
       setupXhr(xhr, method!, $element.is(`[${Attr.SKIP_CSRF}]`));
 
-      var result = fireEvent($element, EventOf.BEFORE_SEND, [element, xhr, settings]);
+      var result = fireEvent($element, EventOf.BEFORE_SEND, [element, xhr, settings, clickEle]);
 
       if (result !== false) {
         loading.show(loadDuration);
-        $(element).trigger(EventOf.SEND, [element, xhr, settings]);
+        $(element).trigger(EventOf.SEND, [element, xhr, settings, clickEle]);
       }
 
       return result;
     },
     complete: function (xhr: JQueryXHR, status: string) {
       loading.hide(loadDuration);
-      $element.trigger(EventOf.COMPLETE, [element, xhr, status]);
+      $element.trigger(EventOf.COMPLETE, [element, xhr, status, clickEle]);
     },
     success: function (data: any, status: string, xhr: JQueryXHR,) {
-      $element.trigger(EventOf.SUCCESS, [element, xhr, status, data]);
+      $element.trigger(EventOf.SUCCESS, [element, xhr, status, data, clickEle]);
       processResponse(element, data, xhr.getResponseHeader('Content-Type') || 'text/html');
     },
     error: function (xhr: JQueryXHR, status: string, err: any) {
-      $element.trigger(EventOf.ERROR, [element, xhr, status, err]);
+      $element.trigger(EventOf.ERROR, [element, xhr, status, err, clickEle]);
     }
   });
 
