@@ -12,6 +12,7 @@ export function processResponse(element: HTMLElement, data: any, contentType: st
 
   $($element.attr(Attr.UPDATE) || '').each(function (_i, update) {
     const $update = $(update);
+    $update.trigger(EventOf.BEFORE_UPDATE, [update, data]);
     switch (mode) {
       case 'BEFORE':
         $update.prepend(data);

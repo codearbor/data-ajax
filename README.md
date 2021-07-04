@@ -24,7 +24,8 @@ Events triggered on the element attached with `[data-ajax]`:
 - `ajax-complete`: Triggered when request is complete. This event may not trigger as the element may not exists after success response. Event Handler Parameters ```(event, element, xhr, status, clickedElement)```
 
 Event triggered on the element `data-ajax-update`:
-- `ajax-update`: Triggered after successful update of the element. Event Handler Parameters ```(event, element, data)```
+- `ajax-before-update`: Triggered before update of the element. Event Handler Parameters ```(event, element, data)```
+- `ajax-updated`: Triggered after successful update of the element. Event Handler Parameters ```(event, element, data)```
 
 ## Requirements
 - [jQuery](https://jquery.com)

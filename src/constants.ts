@@ -22,6 +22,7 @@ export const EventOf = {
   SUCCESS: 'ajax-success',
   ERROR: 'ajax-error',
   COMPLETE: 'ajax-complete',
+  BEFORE_UPDATE: 'ajax-before-update',
   UPDATED: 'ajax-updated',
 }
 
