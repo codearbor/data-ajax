@@ -6,7 +6,7 @@ export function setupButtons() {
   const buttonSelector = `button[${Attr.AJAX}]:not([form]):not([type=submit])`;
   const disableButtonSelector = `button[${Attr.DISABLE}], button[${Attr.DISABLE_WITH}]`;
 
-  $(document).on('click', buttonSelector, function (evt) {
+  $(document).on('click', buttonSelector, function () {
     const $this = $(this);
 
     if ($this.is(disableButtonSelector)) disableElement($this);

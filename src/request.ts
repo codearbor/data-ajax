@@ -54,12 +54,12 @@ export function sendRequest(element: HTMLElement, options: any, clickElement: HT
 
   if ($element.is('form') && $element.attr('enctype') == 'multipart/form-data') {
     const formdata = new FormData();
-    $.each(options.data, function (i, v) {
+    $.each(options.data, function (_i, v) {
       formdata.append(v.name, v.value);
     });
     $('input[type=file]', $element).each(function () {
       const file = this as HTMLInputElement;
-      $.each(file.files, function (n, v) {
+      $.each(file.files, function (_n, v) {
         formdata.append(file.name, v);
       });
     });

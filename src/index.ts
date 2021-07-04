@@ -7,6 +7,9 @@ import { setupFormExt } from './formExt';
 
 (function ($) {
 
+  if (!$)
+    throw new Error('jQuery is required');
+
   setupLinks();
   setupButtons();
   setupInputChange();

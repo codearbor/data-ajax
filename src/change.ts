@@ -6,7 +6,7 @@ export function setupInputChange() {
     , `input[${Attr.AJAX}]`
     , `textarea[${Attr.AJAX}]`].join(',');
 
-  $(document).on('change', inputChangeSelector, function (evt) {
+  $(document).on('change', inputChangeSelector, function () {
     const $this = $(this);
     sendRequest(this as HTMLElement, {
       type: 'GET',

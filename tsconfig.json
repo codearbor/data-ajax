@@ -10,6 +10,7 @@
     "module": "es2015",
     "moduleResolution": "node",
     "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "outDir": "dist",
     "rootDir": "src",
     "sourceMap": false,

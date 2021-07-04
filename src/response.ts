@@ -10,7 +10,7 @@ export function processResponse(element: HTMLElement, data: any, contentType: st
 
   const mode = ($element.attr(Attr.UPDATE_MODE) || '').toUpperCase();
 
-  $($element.attr(Attr.UPDATE) || '').each(function (i, update) {
+  $($element.attr(Attr.UPDATE) || '').each(function (_i, update) {
     const $update = $(update);
     switch (mode) {
       case 'BEFORE':

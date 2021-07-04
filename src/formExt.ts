@@ -19,7 +19,7 @@ const formEnableSelector = [`input[${Attr.DISABLE_WITH}]:disabled`,
 export function setupFormExt() {
   const $doc = $(document);
 
-  $doc.on('ajax-send', formSubmitSelector, function (event, element, xhr, options, clickElement) {
+  $doc.on('ajax-send', formSubmitSelector, function (event, _element, _xhr, _options, clickElement) {
     if (this === event.target) disableFormElements($(this), clickElement);
   });
 

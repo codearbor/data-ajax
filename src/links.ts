@@ -8,6 +8,7 @@ export function setupLinks() {
 
   $(document).on('click', linkSelector, function (evt) {
     const $this = $(this);
+    evt.preventDefault();
 
     if ($this.is(disableLinkSelector)) disableElement($this);
 

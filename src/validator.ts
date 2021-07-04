@@ -8,7 +8,7 @@ export function setupValidation() {
       var $target = $(evt.target),
         $form = $target.is('form') ? $target : $('form', $target);
 
-      $form.each(function (idx, frm) {
+      $form.each(function (_idx, frm) {
         $(frm).removeData('validator');
         $(frm).removeData(DataKey.VALIDATOR);
         setTimeout(function () {
