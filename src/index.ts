@@ -5,9 +5,9 @@ import { setupForms } from './forms';
 import { setupValidation } from './validator';
 import { setupFormExt } from './formExt';
 
-(function ($) {
+(function () {
 
-  if (!$)
+  if (!jQuery)
     throw new Error('jQuery is required');
 
   setupLinks();
@@ -17,4 +17,4 @@ import { setupFormExt } from './formExt';
   setupFormExt();
   setupValidation();
 
-}(jQuery));
+}());

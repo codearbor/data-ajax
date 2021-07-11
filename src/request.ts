@@ -52,6 +52,13 @@ export function sendRequest(element: HTMLElement, options: any, clickElement: HT
 
   method = (method || 'GET').toUpperCase();
 
+  options.data.push({ name: 'X-Requested-With', value: 'XMLHttpRequest' });
+
+  if (!isMethodSafe(method)) {
+    options.type = 'POST';
+    options.data.push({ name: HTTP_OVERRIDE, value: method });
+  }
+
   if ($element.is('form') && $element.attr('enctype') == 'multipart/form-data') {
     const formdata = new FormData();
     $.each(options.data, function (_i, v) {
@@ -68,13 +75,6 @@ export function sendRequest(element: HTMLElement, options: any, clickElement: HT
       contentType: false,
       data: formdata
     });
-  }
-
-  options.data.push({ name: 'X-Requested-With', value: 'XMLHttpRequest' });
-
-  if (!isMethodSafe(method)) {
-    options.type = 'POST';
-    options.data.push({ name: HTTP_OVERRIDE, value: method });
   }
 
   return $.ajax(options);
