@@ -36,7 +36,7 @@ module.exports = {
         terserOptions: {
           format: {
             comments: false,
-            max_line_len: 500
+           // max_line_len: 500
           }
         }
       }),
